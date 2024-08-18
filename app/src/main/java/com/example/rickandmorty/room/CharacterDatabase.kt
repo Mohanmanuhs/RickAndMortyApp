@@ -5,11 +5,11 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.example.rickandmorty.model.Character
+import com.example.rickandmorty.model.RemoteCharacter
 import com.example.rickandmorty.model.RemoteKey
 
 
-@Database(entities = [Character::class,RemoteKey::class], version = 1, exportSchema = false)
+@Database(entities = [RemoteCharacter::class,RemoteKey::class], version = 1, exportSchema = false)
 @TypeConverters(DatabaseConverter::class)
 abstract class CharacterDatabase: RoomDatabase() {
     companion object {

@@ -1,8 +1,7 @@
 package com.example.rickandmorty.room
 
 import androidx.room.TypeConverter
-import com.example.rickandmorty.model.Location
-import com.example.rickandmorty.model.Origin
+import com.example.rickandmorty.model.RemoteCharacter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -11,23 +10,23 @@ class DatabaseConverter {
     private val gson = Gson()
 
     @TypeConverter
-    fun fromLocation(location: Location): String {
+    fun fromLocation(location: RemoteCharacter.Location): String {
         return gson.toJson(location)
     }
 
     @TypeConverter
-    fun toLocation(locationString: String): Location {
-        return gson.fromJson(locationString, Location::class.java)
+    fun toLocation(locationString: String): RemoteCharacter.Location {
+        return gson.fromJson(locationString, RemoteCharacter.Location::class.java)
     }
 
     @TypeConverter
-    fun fromOrigin(origin: Origin): String {
+    fun fromOrigin(origin: RemoteCharacter.Origin): String {
         return gson.toJson(origin)
     }
 
     @TypeConverter
-    fun toOrigin(originString: String): Origin {
-        return gson.fromJson(originString, Origin::class.java)
+    fun toOrigin(originString: String): RemoteCharacter.Origin {
+        return gson.fromJson(originString, RemoteCharacter.Origin::class.java)
     }
 
     @TypeConverter

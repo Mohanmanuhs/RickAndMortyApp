@@ -4,5 +4,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class CharactersPage(
-    val results: List<Character>
+    val results: List<RemoteCharacter>
 )
