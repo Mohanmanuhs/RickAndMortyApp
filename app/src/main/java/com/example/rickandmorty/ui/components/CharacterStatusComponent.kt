@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.rickandmorty.model.CharacterStatus
+import com.example.rickandmorty.ui.theme.RickTextPrimary
 
 @Composable
 fun CharacterStatusComponent(characterStatus: CharacterStatus) {
@@ -25,6 +26,7 @@ fun CharacterStatusComponent(characterStatus: CharacterStatus) {
             .padding(horizontal = 12.dp, vertical = 4.dp)
     ) {
         Text(
+            color = RickTextPrimary,
             text = "Status: ${characterStatus.displayName}",
             fontSize = 20.sp
         )

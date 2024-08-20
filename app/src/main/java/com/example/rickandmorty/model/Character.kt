@@ -35,6 +35,11 @@ data class RemoteCharacter(
     )
 }
 
+@Serializable
+data class RemoteCharacterImage(
+    val image:String
+)
+
 fun RemoteCharacter.toCharacter():Character{
     val characterGender = when (gender.lowercase()) {
         "female" -> CharacterGender.Female
@@ -49,7 +54,7 @@ fun RemoteCharacter.toCharacter():Character{
     }
     return Character(
         created = created,
-        episode = episode,
+        episode = episode.map { it.substring(it.lastIndexOf("/") + 1).toInt() },
         gender = characterGender,
         id = id,
         image = image,
@@ -87,7 +92,7 @@ data class HomeCharacter(
 data class Character(
     val id: Int,
     val created: String,
-    val episode: List<String>,
+    val episode: List<Int>,
     val gender: CharacterGender,
     val image: String,
     val location: Location,

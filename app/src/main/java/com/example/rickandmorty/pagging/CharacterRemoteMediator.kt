@@ -24,7 +24,7 @@ class CharacterRemoteMediator(
         loadType: LoadType, state: PagingState<Int, RemoteCharacter>
     ): MediatorResult {
         return try {
-            delay(500)
+            delay(1000)
             val loadKey = when (loadType) {
                 LoadType.REFRESH -> {
                     val remoteKey = getClosestPosition(state)

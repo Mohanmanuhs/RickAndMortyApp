@@ -6,7 +6,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.rickandmorty.model.RemoteCharacter
-import com.example.rickandmorty.model.RemoteEpisode
 
 
 @Dao
@@ -23,9 +22,6 @@ interface CharacterDao {
 
     @Query("SELECT * FROM RemoteCharacter Where id = :id")
     suspend fun getCharacterBy(id:Int):RemoteCharacter?
-
-    @Query("SELECT episode FROM RemoteCharacter Where id = :id")
-    suspend fun getCharacterEpisodesList(id:Int):List<RemoteEpisode>
 
 
 

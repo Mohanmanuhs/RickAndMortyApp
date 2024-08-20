@@ -31,7 +31,7 @@ import com.example.rickandmorty.ui.components.CharacterImage
 import com.example.rickandmorty.ui.components.DataPoint
 import com.example.rickandmorty.ui.components.DataPointComponent
 import com.example.rickandmorty.ui.components.LoadingState
-import com.example.rickandmorty.ui.theme.txtColor
+import com.example.rickandmorty.ui.theme.RickTextPrimary
 import com.example.rickandmorty.viewmodels.DetailsViewModel
 
 @Composable
@@ -95,13 +95,14 @@ fun CharacterDetailsScreen(navController: NavHostController, characterId: Int, m
         item {
             Text(
                 text = "View all episodes",
+                color = RickTextPrimary,
                 fontSize = 18.sp,
                 textAlign = TextAlign.Center,
                 modifier = Modifier
                     .padding(horizontal = 32.dp)
                     .border(
                         width = 1.dp,
-                        color = txtColor,
+                        color = RickTextPrimary,
                         shape = RoundedCornerShape(12.dp)
                     )
                     .clip(RoundedCornerShape(12.dp))

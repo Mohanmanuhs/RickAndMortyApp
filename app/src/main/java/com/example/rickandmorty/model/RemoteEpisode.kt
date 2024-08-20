@@ -1,5 +1,9 @@
 package com.example.rickandmorty.model
 
+import kotlinx.serialization.Serializable
+
+
+@Serializable
 data class RemoteEpisode(
     val air_date: String,
     val characters: List<String>,
@@ -27,3 +31,4 @@ data class Episode(
     val airDate: String,
     val characterIdsInEpisode: List<Int>
 )
+

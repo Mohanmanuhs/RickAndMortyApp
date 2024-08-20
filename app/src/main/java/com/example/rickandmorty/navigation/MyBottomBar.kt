@@ -8,10 +8,12 @@ import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.rickandmorty.model.NavBarItem
+import com.example.rickandmorty.ui.theme.RickPrimary
 
 @Composable
 fun MyBottomBar(navController1: NavHostController) {
@@ -27,7 +29,7 @@ fun MyBottomBar(navController1: NavHostController) {
             "Search", NavRoutes.Search.route, Icons.Rounded.Search
         ) 
      )
-    BottomAppBar {
+    BottomAppBar(containerColor = RickPrimary) {
         listOfNavBarItems.forEach {
             val selected = it.route == backStackEntry.value?.destination?.route
 
@@ -38,7 +40,7 @@ fun MyBottomBar(navController1: NavHostController) {
                     }
                     launchSingleTop=true
                 } },
-                icon = { Icon(imageVector = it.icon, contentDescription = it.title) })
+                icon = { Icon(tint = Color.LightGray, imageVector = it.icon, contentDescription = it.title) })
         }
     }
 }
