@@ -9,9 +9,9 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val characterRepo: CharacterRepo):ViewModel(){
+class SearchViewModel @Inject constructor(private val characterRepo: CharacterRepo):ViewModel(){
 
-    val pagingData: Flow<PagingData<HomeCharacter>> = characterRepo.getCharacterStream()
-
-
+    fun searchByCharacter(name:String): Flow<PagingData<HomeCharacter>> {
+        return characterRepo.getSearchCharacterStream(name)
+    }
 }

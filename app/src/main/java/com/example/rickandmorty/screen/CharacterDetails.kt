@@ -107,8 +107,7 @@ fun CharacterDetailsScreen(navController: NavHostController, characterId: Int, m
                     )
                     .clip(RoundedCornerShape(12.dp))
                     .clickable {
-                        val routes =
-                            NavRoutes.CharacterEpisodes.route.replace("{id}", "$characterId")
+                        val routes = NavRoutes.CharacterEpisodes.route.replace("{id}", "$characterId")
                         navController.navigate(routes)
                     }
                     .padding(vertical = 8.dp)

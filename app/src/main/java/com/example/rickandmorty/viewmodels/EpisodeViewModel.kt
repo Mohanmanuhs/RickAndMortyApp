@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import com.example.rickandmorty.model.EpisodesUiModel
+import com.example.rickandmorty.model.RemoteCharacterImage
 import com.example.rickandmorty.repository.CharacterRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
@@ -17,8 +18,8 @@ class EpisodeViewModel @Inject constructor(private val characterRepo: CharacterR
 
     val pagingData: Flow<PagingData<EpisodesUiModel>> = characterRepo.getEpisodesStream()
 
-    private val _imgList = MutableStateFlow<List<String>>(emptyList())
-    val imgList:StateFlow<List<String>> = _imgList
+    private val _imgList = MutableStateFlow<List<RemoteCharacterImage>>(emptyList())
+    val imgList:StateFlow<List<RemoteCharacterImage>> = _imgList
 
     fun getCharacterImgList(list:List<Int>){
         viewModelScope.launch {

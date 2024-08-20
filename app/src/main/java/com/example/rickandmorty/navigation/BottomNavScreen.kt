@@ -45,7 +45,7 @@ fun BottomNavScreen(navHostController: NavHostController, modifier: Modifier = M
                 SearchScreen(navController1)
             }
             composable(NavRoutes.Episodes.route) {
-                EpisodeScreen(navController1)
+                EpisodeScreen(navHostController)
             }
         }
     }

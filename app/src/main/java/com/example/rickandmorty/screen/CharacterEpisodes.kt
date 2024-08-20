@@ -31,6 +31,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import com.example.rickandmorty.model.Character
 import com.example.rickandmorty.model.Episode
 import com.example.rickandmorty.ui.components.CharacterImage
@@ -46,9 +47,9 @@ import com.example.rickandmorty.viewmodels.CharacterEpisodesViewModel
 import com.example.rickandmorty.viewmodels.EpisodeViewModel
 
 @Composable
-fun CharacterEpisodesScreen(onBackClicked: () -> Unit,characterId:Int, modifier: Modifier = Modifier,characterEpisodesViewModel: CharacterEpisodesViewModel = hiltViewModel(),episodesViewModel: EpisodeViewModel= hiltViewModel()) {
+fun CharacterEpisodesScreen(navController: NavHostController,onBackClicked: () -> Unit,characterId:Int, modifier: Modifier = Modifier,characterEpisodesViewModel: CharacterEpisodesViewModel = hiltViewModel(),episodesViewModel: EpisodeViewModel= hiltViewModel()) {
 
-    val list = characterEpisodesViewModel.episodeList.collectAsState().value
+    val list by characterEpisodesViewModel.episodeList.collectAsState()
     val character by characterEpisodesViewModel.character.collectAsState()
 
 
@@ -57,7 +58,7 @@ fun CharacterEpisodesScreen(onBackClicked: () -> Unit,characterId:Int, modifier:
     }
 
     if(character != null && list.isNotEmpty()){
-        MainScreen(episodesViewModel,character = character!!, episodes = list) { onBackClicked()}
+        MainScreen(navController,episodesViewModel,character = character!!, episodes = list) { onBackClicked()}
     }else {
         LoadingState()
     }
@@ -65,7 +66,7 @@ fun CharacterEpisodesScreen(onBackClicked: () -> Unit,characterId:Int, modifier:
 
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
-private fun MainScreen(episodesViewModel: EpisodeViewModel,character: Character, episodes: List<Episode>, onBackClicked: () -> Unit) {
+private fun MainScreen(navController:NavHostController,episodesViewModel: EpisodeViewModel,character: Character, episodes: List<Episode>, onBackClicked: () -> Unit) {
     val episodeBySeasonMap = episodes.groupBy { it.seasonNumber }
     val imgList by episodesViewModel.imgList.collectAsState()
     var epi by remember {
@@ -80,7 +81,7 @@ private fun MainScreen(episodesViewModel: EpisodeViewModel,character: Character,
             }, sheetState = sheetState
         ) {
             // Sheet content
-            epi?.let { BottomEpisode(imgList = imgList, epi = it) }
+            epi?.let { BottomEpisode(navController = navController, imgList = imgList, epi = it) }
         }
     }
     Column {

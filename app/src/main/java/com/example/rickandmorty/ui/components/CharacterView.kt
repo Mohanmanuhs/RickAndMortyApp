@@ -31,8 +31,7 @@ fun CharacterView(navController: NavController, character: HomeCharacter, modifi
             )
             .clip(RoundedCornerShape(12.dp))
             .clickable {
-                val routes =
-                    NavRoutes.CharacterDetails.route.replace("{id}", "${character.id}")
+                val routes = NavRoutes.CharacterDetails.route.replace("{id}", "${character.id}")
                 navController.navigate(routes)
             }
     ) {

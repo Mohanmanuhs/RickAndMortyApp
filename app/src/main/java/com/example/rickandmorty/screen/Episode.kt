@@ -48,7 +48,16 @@ fun EpisodeScreen(
         pagingData.refresh()
         swipeRefreshState.isRefreshing = true
     }) {
-
+        if (showBottomSheet) {
+            ModalBottomSheet(
+                onDismissRequest = {
+                    showBottomSheet = false
+                }, sheetState = sheetState
+            ) {
+                // Sheet content
+                epi?.let { BottomEpisode(navController,imgList = imgList, epi = it) }
+            }
+        }
         when (pagingData.loadState.refresh) {
             is LoadState.Loading -> {
                 LoadingState()
@@ -86,16 +95,6 @@ fun EpisodeScreen(
             else -> {
                 LoadingState()
             }
-        }
-    }
-    if (showBottomSheet) {
-        ModalBottomSheet(
-            onDismissRequest = {
-                showBottomSheet = false
-            }, sheetState = sheetState
-        ) {
-            // Sheet content
-            epi?.let { BottomEpisode(imgList = imgList, epi = it) }
         }
     }
 }

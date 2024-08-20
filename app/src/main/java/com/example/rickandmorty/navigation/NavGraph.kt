@@ -45,6 +45,7 @@ fun NavGraph(navController: NavHostController, modifier: Modifier = Modifier) {
             type = NavType.IntType
         })) { navBackStack ->
             val id = navBackStack.arguments!!.getInt("id")
+            Log.d("userId", "$id")
             CharacterDetailsScreen(navController, id)
         }
         composable(NavRoutes.CharacterEpisodes.route, arguments = listOf(navArgument("id") {
@@ -52,7 +53,7 @@ fun NavGraph(navController: NavHostController, modifier: Modifier = Modifier) {
         })) { navBackStack ->
             val id = navBackStack.arguments!!.getInt("id")
             Log.d("userId", "$id")
-            CharacterEpisodesScreen({navController.navigateUp()},id)
+            CharacterEpisodesScreen(navController,{navController.navigateUp()},id)
         }
     }
 }

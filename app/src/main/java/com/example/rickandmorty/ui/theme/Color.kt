@@ -17,7 +17,7 @@ val RickAction = Color(0xffb5eefd)
 val RickSurface = Color(0xffead7ce)
 val RickTextPrimary = Color(0xffffffff)
 val RickTextSecondary = Color(0xffead7ce)
-
+val Bg = Color(0xBF000000)
 val txtColor: Color
     @Composable
     get() = if (isSystemInDarkTheme()) Color.White else Color.Black

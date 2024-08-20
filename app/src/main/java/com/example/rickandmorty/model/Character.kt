@@ -37,7 +37,9 @@ data class RemoteCharacter(
 
 @Serializable
 data class RemoteCharacterImage(
-    val image:String
+    val id:Int,
+    val image:String,
+    val name:String
 )
 
 fun RemoteCharacter.toCharacter():Character{

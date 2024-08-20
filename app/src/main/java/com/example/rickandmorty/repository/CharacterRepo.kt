@@ -1,6 +1,5 @@
 package com.example.rickandmorty.repository
 
-import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
@@ -11,12 +10,14 @@ import com.example.rickandmorty.model.Character
 import com.example.rickandmorty.model.Episode
 import com.example.rickandmorty.model.EpisodesUiModel
 import com.example.rickandmorty.model.HomeCharacter
+import com.example.rickandmorty.model.RemoteCharacterImage
 import com.example.rickandmorty.model.toCharacter
 import com.example.rickandmorty.model.toDomainEpisode
 import com.example.rickandmorty.model.toHomeCharacter
 import com.example.rickandmorty.network.ApiService
 import com.example.rickandmorty.pagging.CharacterRemoteMediator
 import com.example.rickandmorty.pagging.EpisodePagingSource
+import com.example.rickandmorty.pagging.SearchCharacterPagingSource
 import com.example.rickandmorty.room.CharacterDao
 import com.example.rickandmorty.room.RemoteKeyDao
 import kotlinx.coroutines.flow.Flow
@@ -40,13 +41,20 @@ class CharacterRepo(
         }
     }
 
+    fun getSearchCharacterStream(name:String): Flow<PagingData<HomeCharacter>> {
+        return Pager(PagingConfig(
+            pageSize = 5
+        ),pagingSourceFactory = {
+            SearchCharacterPagingSource(apiService,name)
+        }).flow
+    }
+
     suspend fun getCharacterById(id: Int): Character? {
         return characterDao.getCharacterBy(id)?.toCharacter()
     }
 
-    suspend fun getCharactersImageList(list:List<Int>):List<String> {
-        Log.d("TAG", apiService.getCharacterByIds(list.joinToString(separator = ",")).map { it.image }.joinToString(","))
-        return apiService.getCharacterByIds(list.joinToString(separator = ",")).map { it.image }
+    suspend fun getCharactersImageList(list:List<Int>):List<RemoteCharacterImage> {
+        return apiService.getCharacterByIds(list.joinToString(separator = ","))
     }
 
     suspend fun getCharacterEpisodesList(id: Int): List<Episode> {

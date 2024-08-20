@@ -15,6 +15,12 @@ interface ApiService {
     suspend fun getCharacterByIds(@Path("ids") ids: String): List<RemoteCharacterImage>
 
     @GET("character")
+    suspend fun searchCharacterByName(
+        @Query("page") page: Int,
+        @Query("name") name: String
+    ): CharactersPage
+
+    @GET("character")
     suspend fun getCharactersListMediator(
         @Query("page") page: Int
     ): CharactersPage
